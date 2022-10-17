@@ -1,0 +1,29 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script:
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azure for Students (128ff7b8-6530-4a9a-9c25-4e4735bda7bc)'
+    subscriptionId: '128ff7b8-6530-4a9a-9c25-4e4735bda7bc'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'GroupeDev'
+    location: 'North Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/IbouKa/deployARMtemplate/main/storageAccount/deployStorage.json'
+    deploymentMode: 'Complete'
+    deploymentName: 'deployStorage'
